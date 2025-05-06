@@ -1,0 +1,49 @@
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Cartmart {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		WebDriver web = new ChromeDriver();
+		web.get("https://rahulshettyacademy.com/seleniumPractise/#/");
+		// web.findElement(By.xpath("//button[text() = \"ADD TO CART\"]")).click();
+		List<WebElement> listofaddtocart = web.findElements(By.xpath("//h4[@class=\"product-name\"]"));
+		for (int i = 0; i < listofaddtocart.size(); i++) {
+			System.out.println((listofaddtocart.get(i).getText()));
+			if (listofaddtocart.get(i).getText().contains("Beans - 1 Kg")) {
+				for (int j = 0; j < 5; j++) {
+					web.findElements(By.xpath("//a[@class=\"increment\"]")).get(i).click();
+				}
+
+				Thread.sleep(5000);
+
+				web.findElements(By.xpath("//button[text() = \"ADD TO CART\"]")).get(i).click();
+
+			}
+		}
+		web.findElement(By.xpath("//img[@alt=\"Cart\"]")).click();
+		web.findElement(By.xpath("//div[@class=\"action-block\"]/button[text()=\"PROCEED TO CHECKOUT\"]")).click();
+		Thread.sleep(2000);
+		web.findElement(By.xpath("//input[@class=\"promoCode\"]")).sendKeys("rahulshettyacademy");
+		Thread.sleep(2000);
+		web.findElement(By.xpath("//button[text()=\"Apply\"]")).click();
+		Thread.sleep(5000);
+		String code = web.findElement(By.xpath("//span[text()=\"Code applied ..!\"]")).getText();
+		System.out.println(code);
+		web.findElement(By.xpath("//button[text()=\"Place Order\"]")).click();
+		Thread.sleep(2000);
+		Select sel = new Select(web.findElement(By.xpath("//select[@style=\"width: 200px;\"]")));
+		sel.selectByValue("India");
+		web.findElement(By.xpath("//input[@class=\"chkAgree\"]")).click();
+		web.findElement(By.xpath("//button[text()=\"Proceed\"]")).click();
+		web.close();
+
+	}
+
+}
