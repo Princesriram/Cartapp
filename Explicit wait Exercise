@@ -1,0 +1,42 @@
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+
+public class Actionclass {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+	WebDriver web = new ChromeDriver();
+	web.get("http://uitestingplayground.com/autowait");
+	
+	System.out.println(web.findElement(By.id("opstatus")).getText());
+	web.findElement(By.cssSelector("#applyButton3")).click();
+	System.out.println(web.findElement(By.id("opstatus")).getText());
+	WebDriverWait wait = new WebDriverWait(web,Duration.ofSeconds(3));
+	wait.until(ExpectedConditions.textToBePresentInElementLocated(By.id("opstatus"), "Target element state restored."));
+	System.out.println(web.findElement(By.id("opstatus")).getText());
+	
+	web.findElement(By.cssSelector("#applyButton5")).click();
+	System.out.println(web.findElement(By.id("opstatus")).getText());
+	WebDriverWait wait1 = new WebDriverWait(web,Duration.ofSeconds(5));
+	wait1.until(ExpectedConditions.textToBePresentInElementLocated(By.id("opstatus"), "Target element state restored."));
+	System.out.println(web.findElement(By.id("opstatus")).getText());
+	
+	web.findElement(By.cssSelector("#applyButton10")).click();
+	System.out.println(web.findElement(By.id("opstatus")).getText());
+	WebDriverWait wait2 = new WebDriverWait(web,Duration.ofSeconds(10));
+	wait2.until(ExpectedConditions.textToBePresentInElementLocated(By.id("opstatus"), "Target element state restored."));
+	System.out.println(web.findElement(By.id("opstatus")).getText());
+	
+
+	}
+
+}
