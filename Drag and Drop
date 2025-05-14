@@ -1,0 +1,32 @@
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+
+public class Actionclass {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+	WebDriver web = new ChromeDriver();
+	web.get("https://jqueryui.com/droppable/");
+	web.switchTo().frame(web.findElement(By.xpath("//iframe[@class='demo-frame']")));
+	WebElement Drag = web.findElement(By.cssSelector("#draggable"));
+	WebElement Drop = web.findElement(By.cssSelector("#droppable"));
+	
+	Actions act = new Actions(web); 
+	act.dragAndDrop(Drag, Drop).build().perform();
+	
+	
+	
+
+	}
+
+}
