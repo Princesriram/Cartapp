@@ -1,0 +1,27 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+
+public class Actionclass {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+	WebDriver web = new ChromeDriver();
+	web.get("https://testpages.eviltester.com/styled/alerts/alert-test.html");
+	Thread.sleep(2000);
+	web.findElement(By.cssSelector("#alertexamples")).click();
+	   web.switchTo().alert().accept();
+	   web.findElement(By.cssSelector("#confirmexample")).click();
+	   web.switchTo().alert().dismiss();
+	   web.findElement(By.xpath("//input[@id=\"promptexample\"]")).click();
+	   web.switchTo().alert().sendKeys("I can do anything");
+	   web.switchTo().alert().accept();
+	
+	
+
+	}
+
+}
